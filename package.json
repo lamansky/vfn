@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "array-pad": "0.0.1",
+    "is-plain-object": "^2.0.4",
+    "plainify": "^1.0.0",
     "wfn": "^1.0.0"
   },
   "devDependencies": {

@@ -82,4 +82,65 @@ describe('vfn()', function () {
       done()
     })(1, 2, 3)
   })
+
+  it('should collapse excess into beginning, ignoring options if `oo` is true', function (done) {
+    let calls = 0
+    const fn = vfn({oo: true}, function (extra, {callDone} = {}) {
+      assert(Array.isArray(extra))
+      assert.strictEqual(extra.length, 2)
+      assert.strictEqual(extra[0], 1)
+      assert.strictEqual(extra[1], 2)
+      calls++
+      if (callDone) {
+        assert.strictEqual(calls, 2)
+        done()
+      } else {
+        assert.strictEqual(calls, 1)
+      }
+    })
+
+    fn(1, 2)
+    fn(1, 2, {callDone: true})
+  })
+
+  it('should collapse excess into middle, ignoring options if `oo` is true', function (done) {
+    let calls = 0
+    const fn = vfn({arg: 1, oo: true}, function (first, extra, last, {callDone} = {}) {
+      assert.strictEqual(first, 1)
+      assert(Array.isArray(extra))
+      assert.strictEqual(extra.length, 2)
+      assert.strictEqual(extra[0], 2)
+      assert.strictEqual(extra[1], 3)
+      assert.strictEqual(last, 4)
+      calls++
+      if (callDone) {
+        assert.strictEqual(calls, 2)
+        done()
+      } else {
+        assert.strictEqual(calls, 1)
+      }
+    })
+
+    fn(1, 2, 3, 4)
+    fn(1, 2, 3, 4, {callDone: true})
+  })
+
+  it('should arrify if no excess, ignoring options if `oo` is true', function (done) {
+    let calls = 0
+    const fn = vfn({arg: 0, oo: true}, function (extra, {callDone} = {}) {
+      assert(Array.isArray(extra))
+      assert.strictEqual(extra.length, 1)
+      assert.strictEqual(extra[0], 1)
+      calls++
+      if (callDone) {
+        assert.strictEqual(calls, 2)
+        done()
+      } else {
+        assert.strictEqual(calls, 1)
+      }
+    })
+
+    fn(1)
+    fn(1, {callDone: true})
+  })
 })
