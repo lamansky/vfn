@@ -1,6 +1,6 @@
-# vfn
+# Variadic Function (vfn)
 
-Variadic Function. Lets you specify a “[rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)” that’s _not_ at the end.
+Lets you specify a “[rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)” that’s _not_ at the end.
 
 ## Installation
 
@@ -46,4 +46,4 @@ func('hello world') // a = []; b = 'hello world'; c = undefined
 
 ## Related
 
-For more projects like this, check out the [xfn](https://github.com/lamansky/xfn) family of modules.
+For more projects like this, check out [@lamansky/fn](https://github.com/lamansky/fn).
