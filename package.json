@@ -1,6 +1,6 @@
 {
   "name": "vfn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Creates a variadic function, with a “rest parameter” that’s NOT at the end.",
   "keywords": [
     "variadic",
